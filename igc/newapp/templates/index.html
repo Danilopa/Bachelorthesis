@@ -1,0 +1,373 @@
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>ICONOGRAPHIC SEARCH</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/intro.js/introjs.css" />
+
+    <script src="http://localhost:8000/static/thesis-wrapper.js"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"
+      integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/sparql/sparql.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/sparqling/sparql-formatter@v0.7.6/dist/main.js"></script>
+    <script src="https://unpkg.com/intro.js/intro.js"></script>
+
+    {% block mainjs %}
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    {% endblock %} {% block maincss %}
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
+    {% endblock %}
+  </head>
+
+  <body>
+    <div id="relationMenu" class="hidden">
+      <div class="topbar">
+        <h2>
+          Edit relations between coins:
+          <span
+            class="material-symbols-outlined"
+            data-tooltip="Edit the relations between the queried coins."
+            >info</span
+          >
+        </h2>
+        <div id="relationEditorWrapper">
+          <div id="relationEditor" contenteditable="true"></div>
+          <div id="catalogueWrapper">
+            <div id="coincatalogue">
+              <div class="coin-table">
+                <div class="coin-thead">
+                  <div class="coin-tr">
+                    <span>ID</span>
+                    <span>Front</span>
+                    <span>Back</span>
+                  </div>
+                </div>
+                <div class="coin-tbody"></div>
+              </div>
+            </div>
+            <div id="operatorcatalogue">
+              <div class="calculator-grid">
+                <button data-op="p_open">(</button>
+                <button data-op="p_close">)</button>
+                <button data-op="and">AND</button>
+                <button data-op="or">OR</button>
+                <button data-op="not">NOT</button>
+                <button class="clear">Clear</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottombar">
+        <div id="sparqleditor">
+          <h2>
+            SPARQL-Query:
+            <span
+              class="material-symbols-outlined"
+              data-tooltip="Here you can see the SPARQL query that will be executed. You can edit it, clear it or beautify it."
+              >info</span
+            >
+          </h2>
+          <div class="editortabs">
+            <button class="" data-action="clearSPARQLEditor">Clear</button>
+            <button class="" data-action="beautifySPARQLeditor">
+              Beautify
+            </button>
+          </div>
+          <textarea
+            id="sparqlQuery"
+            class="editor"
+            placeholder="Generated SPARQL query will appear here..."
+          ></textarea>
+        </div>
+        <div class="button-group">
+          <button id="saveButton" class="save">Save</button>
+          <button id="closeButton" class="close">Close</button>
+        </div>
+      </div>
+    </div>
+    <div id="main">
+      <div id="menu">
+        <div id="logo">
+          <div class="logo-image"></div>
+          <div class="logo-label">
+            <span>ICONOGRAPHIC SEARCH</span>
+          </div>
+        </div>
+        <div id="nav">
+          <div class="nav-item active">
+            <a href="/">
+              <div class="nav-item-inner">
+                <div class="icon-outer">
+                  <span class="material-symbols-outlined">
+                    quick_reference_all
+                  </span>
+                </div>
+                <span class="nav-text">Search</span>
+              </div>
+            </a>
+          </div>
+          <div class="nav-item disabled">
+            <a href="/history">
+              <div class="nav-item-inner">
+                <div class="icon-outer">
+                  <span class="material-symbols-outlined"> history </span>
+                </div>
+                <span class="nav-text">History</span>
+              </div>
+            </a>
+          </div>
+          <div class="nav-item">
+            <a href="#tutorial">
+              <div class="nav-item-inner">
+                <div class="icon-outer">
+                  <span class="material-symbols-outlined"> school </span>
+                </div>
+                <span class="nav-text">Tutorial</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div id="stage">
+        <div id="stageArea">
+          <div id="moveableStage" data-state="query">
+            <div id="searchBox">
+              <div id="headline">
+                <span>Search Engine</span>
+              </div>
+              <div id="searchType">
+                <div id="search">
+                  <input
+                    type="radio"
+                    id="coin-search"
+                    name="search-type"
+                    value="NumismaticObject"
+                    checked
+                  />
+                  <label for="coin-search">Coin search</label>
+
+                  <input
+                    type="radio"
+                    id="type-search"
+                    name="search-type"
+                    value="TypeSeriesItem"
+                  />
+                  <label for="type-search">Type search</label>
+                </div>
+              </div>
+              <div id="front" class="coin-side" data-side="obverse">
+                <h2>
+                  Obverse
+                  <span
+                    class="material-symbols-outlined"
+                    data-tooltip="Describe the obverse of your coins with the help of autocomplete."
+                    >info</span
+                  >
+                </h2>
+                <div id="search">
+                  <input
+                    type="text"
+                    class="textbox"
+                    name="q"
+                    placeholder="Describe your coin here"
+                    autocomplete="off"
+                    data-role="coin-description"
+                    data-side="obverse"
+                  />
+                  <span class="material-symbols-outlined totext"> search </span>
+                  <div class="tagContainer"></div>
+                  <div id="rec">
+                    <ul></ul>
+                  </div>
+                </div>
+                <div id="keywords">
+                  <input
+                    type="text"
+                    class="textbox"
+                    placeholder="Keywords"
+                    data-role="coin-keyword"
+                  />
+                  <span class="material-symbols-outlined totext"> label </span>
+                  <button data-action="addKeyword">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                  <div class="keywordContainer"></div>
+                </div>
+              </div>
+              <div id="back" class="coin-side" data-side="reverse">
+                <h2>
+                  Reverse
+                  <span
+                    class="material-symbols-outlined"
+                    data-tooltip="Describe the reverse of your coins with the help of autocomplete."
+                    >info</span
+                  >
+                </h2>
+                <div id="search">
+                  <input
+                    type="text"
+                    class="textbox"
+                    name="q"
+                    placeholder="Describe your coin here"
+                    autocomplete="off"
+                    data-role="coin-description"
+                    data-side="reverse"
+                  />
+                  <span class="material-symbols-outlined totext"> search </span>
+                  <div class="tagContainer"></div>
+                  <div id="rec">
+                    <ul></ul>
+                  </div>
+                </div>
+                <div id="keywords">
+                  <input
+                    type="text"
+                    class="textbox"
+                    placeholder="Keywords"
+                    data-role="coin-keyword"
+                  />
+                  <span class="material-symbols-outlined totext"> label </span>
+                  <button data-action="addKeyword">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                  <div class="keywordContainer"></div>
+                </div>
+              </div>
+              <div id="searchActions">
+                <button data-action="clearInputCoin" class="clearCoin">
+                  Clear input
+                </button>
+                <button data-action="addCoin" class="addcoin">
+                  Add coin to query &#8594;
+                </button>
+              </div>
+            </div>
+            <div id="queryBox">
+              <div id="headline">
+                <span
+                  >Queried Items
+                  <span
+                    class="material-symbols-outlined"
+                    data-tooltip="Here you can see the coins you have added to your query. You can edit them, remove them or search for them in the database"
+                    >info</span
+                  >
+                </span>
+              </div>
+              <div id="coincatalogue">
+                <div class="coin-table">
+                  <div class="coin-thead">
+                    <div class="coin-tr">
+                      <span>ID</span>
+                      <span>Front</span>
+                      <span>Back</span>
+                      <span>Action</span>
+                    </div>
+                  </div>
+                  <div class="coin-tbody"></div>
+                </div>
+              </div>
+              <div id="searchActions">
+                <button data-action="clearAllQueriedCoins" class="clearcoins">
+                  Clear All
+                </button>
+                <button data-action="editRelation" class="advancededit">
+                  SPARQL / Relations Editor
+                </button>
+                <button data-action="searchCoin" class="searchcoin" disabled>
+                  Search
+                </button>
+              </div>
+            </div>
+            <div id="resultBox">
+              <div id="returnToQuery">
+                <span>Back to search &#8593;</span>
+              </div>
+              <div id="headline">
+                <span
+                  >Search results (<span id="numSearchResults">0</span>
+                  results):</span
+                >
+                <div id="resultActions">
+                  <div class="sort-container-sortby">
+                    <label for="sortSelect">Sort By:</label>
+                    <select id="sortSelect" class="sort-dropdown">
+                      <option value="weight">Weight</option>
+                      <option value="maxDiameter">Max Diameter</option>
+                      <option value="location" selected>Region</option>
+                    </select>
+                  </div>
+                  <div class="sort-container-direction">
+                    <label for="sortDirection">Sort Direction:</label>
+                    <select id="sortDirection" class="sort-dropdown">
+                      <option value="ascending" selected>
+                        Ascending &#8593;
+                      </option>
+                      <option value="descending">Descending &#8595;</option>
+                    </select>
+                  </div>
+                  <div class="group-container">
+                    <label for="groupSelect">Group By:</label>
+                    <select id="groupSelect" class="group-dropdown">
+                      <option value="category">Type</option>
+                      <option value="weight">Weight</option>
+                      <option value="maxDiameter">Max Diameter</option>
+                      <option value="location" selected>Region</option>
+                    </select>
+                  </div>
+                  <button
+                    data-action="downloadResults"
+                    class="download-results"
+                  >
+                    CSV Download
+                    <span class="material-symbols-outlined"> download </span>
+                  </button>
+                </div>
+              </div>
+              <div id="resultContainer">
+                <div id="loadingSymbol" class="hidden">
+                  <span class="material-symbols-outlined">
+                    progress_activity
+                  </span>
+                </div>
+              </div>
+              <div id="paginationControls">
+                <button id="prevPage">Previous</button>
+                <span id="pageInfo"></span>
+                <button id="nextPage">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
