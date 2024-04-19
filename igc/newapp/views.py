@@ -28,6 +28,8 @@ def index(request):
 
 	Returns:
 		HttpResponse: The rendered index page.
+	
+	Author: Danilo Pantic
 	"""
 	template = loader.get_template('index.html')
 
@@ -44,6 +46,8 @@ def getRecommendations(q, scope):
 
 	Returns:
 		dict: A dictionary containing search results from different dataframes.
+	
+	Author: Danilo Pantic
 	"""
 	out = {}
 
@@ -57,8 +61,6 @@ def getRecommendations(q, scope):
 	}
 
 	for table in scope.keys():
-		print(out.keys(), table, scope[table])
-
 		if scope[table]:
 			df = database.get(table)
 			if df is not None:
@@ -86,6 +88,8 @@ def MultiValueDict2Dict(key, mvd):
 
 	Returns:
 		dict: A dictionary with filtered data.
+	
+	Author: Mohammed Sayed Mahmod
 	"""
 	out = {}
 
@@ -107,6 +111,8 @@ def convertId(id_str):
 
 	Returns:
 		str: The converted ID.
+	
+	Author: Danilo Pantic
 	"""
 	if "coin_id=" in id_str:
 		return id_str.split("coin_id=")[1]
@@ -123,6 +129,8 @@ def download_search_results(request):
 
 	Returns:
 		HttpResponse: A response object with the file download or an error message.
+	
+	Author: Mohammed Sayed Mahmod
 	"""
 	if request.method == "POST":
 		fileType = request.POST["fileType"]
@@ -175,6 +183,8 @@ def log(request):
 
 	Returns:
 		JsonResponse: A response indicating success or failure of the log operation.
+	
+	Author: Mohammed Sayed Mahmod
 	"""
 	if request.method == 'POST':
 		try:
@@ -208,6 +218,8 @@ def callback(request):
 
 	Returns:
 		JsonResponse: A response object with the result of the action or an error message.
+	
+	Author: Mohammed Sayed Mahmod
 	"""
 	response = {"success": False}
 	if request.method == "POST":

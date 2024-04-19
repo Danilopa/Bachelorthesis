@@ -8,6 +8,8 @@ class CustomDataFrame():
 
     Attributes:
         df (pd.DataFrame): The underlying pandas DataFrame.
+    
+    Author: Danilo Pantic
     """
         
     def __init__(self, pd_df):

@@ -17,6 +17,8 @@ class CoinSearchHandler():
     def __init__(self):
         """
         Initializes the CoinSearchHandler with a specific SPARQL endpoint.
+
+        Author: Danilo Pantic
         """
         self.endpoint = "https://data.corpus-nummorum.eu/sparql"
         self.store = sparqlstore.SPARQLStore(self.endpoint)
@@ -37,6 +39,8 @@ class CoinSearchHandler():
 
         Returns:
             list: A list of results obtained from the query execution.
+        
+        Author: Danilo Pantic
         """
         return self.g.query(query)
     
@@ -52,6 +56,8 @@ class CoinSearchHandler():
 
         Returns:
             str: A SPARQL query part specific to the provided coin attributes.
+        
+        Author: Mohammed Sayed Mahmod
         """
         obverse_part = ""
         reverse_part = ""
@@ -198,6 +204,8 @@ class CoinSearchHandler():
 
         Returns:
             tuple: A tuple containing the subject, predicate, and object extracted from the coin side.
+        
+        Author: Danilo Pantic
         """
         subject = None
         predicate = None
@@ -227,6 +235,8 @@ class CoinSearchHandler():
 
         Returns:
             str: A SPARQL query part for the specified side of the coin.
+
+        Author: Danilo Pantic
         """
         sparql_part = f"""
         ?url nmo:has{side.capitalize()} ?{side}Side .
@@ -267,6 +277,8 @@ class CoinSearchHandler():
         
         Returns:
             str: The transformed boolean expression with eliminated NOT brackets.
+        
+        Author: Mohammed Sayed Mahmod
         """
         while "NOT (" in expression:
             pattern = r"NOT \(([^)]+)\)"
@@ -299,6 +311,8 @@ class CoinSearchHandler():
 
         Returns:
             str: A complete SPARQL query constructed from the provided coins and boolean term.
+        
+        Author: Mohammed Sayed Mahmod
         """
         booleanTerm = self._eliminate_not_brackets(booleanTerm)
         booleanTerm = booleanTerm.replace("(", "{").replace(")", "}")

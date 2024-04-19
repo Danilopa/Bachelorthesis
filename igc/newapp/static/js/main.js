@@ -28,6 +28,8 @@ $(document).ready(function () {
     /**
      * Getter for _coins array.
      * @returns {Array} The current array of coins.
+     *
+     * @Author: Danilo Pantic
      */
     get coins() {
       return this._coins;
@@ -36,6 +38,8 @@ $(document).ready(function () {
     /**
      * Setter for _coins array, triggers state change actions.
      * @param {Array} value - The new coin array.
+     *
+     * @Author: Danilo Pantic
      */
     set coins(value) {
       this._coins = value;
@@ -45,6 +49,8 @@ $(document).ready(function () {
     /**
      * Adds a coin to the state and triggers updates.
      * @param {Object} coin - The coin object to add.
+     *
+     * @Author: Danilo Pantic
      */
     addCoin: function (coin) {
       this._coins.push(coin);
@@ -53,6 +59,8 @@ $(document).ready(function () {
 
     /**
      * Clears all coins from the state and triggers updates.
+     *
+     * @Author: Danilo Pantic
      */
     clearCoins: function () {
       this._coins = [];
@@ -63,6 +71,8 @@ $(document).ready(function () {
 
     /**
      * Function to handle updates when coins change.
+     *
+     * @Author: Danilo Pantic
      */
     onCoinsChange: function () {
       renderCoins();
@@ -71,8 +81,10 @@ $(document).ready(function () {
     },
 
     /**
-     * Setzt die aktuelle Seite und rendert die Ergebnisse neu.
-     * @param {number} page - Die Seitennummer, die gesetzt werden soll.
+     * Sets the current page and rerenders visual elements..
+     * @param {number} page - The desired page number.
+     *
+     * @Author: Danilo Pantic
      */
     setPage: function (page) {
       this.currentPage = page;
@@ -80,7 +92,9 @@ $(document).ready(function () {
     },
 
     /**
-     * Geht zur nächsten Seite, wenn diese verfügbar ist, und rendert die Ergebnisse neu.
+     * Switches to next page (if possible) and rerenders respective results.
+     *
+     * @Author: Danilo Pantic
      */
     nextPage: function () {
       if (this.currentPage < this.totalPages) {
@@ -90,7 +104,9 @@ $(document).ready(function () {
     },
 
     /**
-     * Geht zur vorherigen Seite, wenn diese verfügbar ist, und rendert die Ergebnisse neu.
+     * Switches to previous page (if possible) and rerenders respective results.
+     *
+     * @Author: Danilo Pantic
      */
     previousPage: function () {
       if (this.currentPage > 1) {
@@ -99,6 +115,13 @@ $(document).ready(function () {
       }
     },
 
+    /**
+     * Renders the results of the current page based on the current page number and results per page settings.
+     * This function handles sorting of the results, slicing them for the current page, grouping them according to selected criteria,
+     * and finally rendering them on the webpage. It also updates the pagination controls and resets the scroll position of the results container.
+     *
+     * @Author: Danilo Pantic
+     */
     renderCurrentPage: function () {
       sortResults();
 
@@ -116,6 +139,7 @@ $(document).ready(function () {
     },
   };
 
+  // Author: Mohammed Sayed Mahmod
   const tour = introJs()
     .setOptions({
       steps: [
@@ -235,6 +259,7 @@ $(document).ready(function () {
       }
     });
 
+  // Author: Mohammed Sayed Mahmod
   var editor = CodeMirror.fromTextArea($("#sparqlQuery")[0], {
     mode: "application/sparql-query",
     lineNumbers: true,
@@ -248,6 +273,8 @@ $(document).ready(function () {
    * @param {string} category - The category of the item
    * @param {number} pos - The position of the item in the tag container
    * @returns {jQuery} The tag element
+   *
+   * @Author: Danilo Pantic
    */
   function item2Tag(item, category, pos) {
     let new_tag = $("<div class='tag'></div>");
@@ -303,6 +330,8 @@ $(document).ready(function () {
    * Converts a coin ID string into its numeric index.
    * @param {string} coinId - The coin ID to convert.
    * @returns {number} The numeric index corresponding to the coin ID.
+   *
+   * @Author: Danilo Pantic
    */
   function coinIdToIndex(coinId) {
     return parseInt(coinId.substring(1)) - 1;
@@ -312,6 +341,8 @@ $(document).ready(function () {
    * Creates an HTML element from a string of HTML.
    * @param {string} htmlString - The HTML string to convert into an element.
    * @returns {Element} The created HTML element.
+   *
+   * @Author: Danilo Pantic
    */
   function createElementFromHTML(htmlString) {
     const div = document.createElement("div");
@@ -322,6 +353,8 @@ $(document).ready(function () {
   /**
    * Converts the relation string from the relation editor to a string
    * @returns {string} The relation string as a string
+   *
+   * @Author: Danilo Pantic
    */
   function htmlToRelationString() {
     let relationString = "";
@@ -350,6 +383,8 @@ $(document).ready(function () {
    * Converts a relation string to HTML and displays it in the relation editor
    * @param {string} relationString The relation string to convert
    * @returns {void}
+   *
+   * @Author: Mohammed Sayed Mahmod
    */
   function relationStringToHtml(relationString) {
     const opMap = {
@@ -377,6 +412,8 @@ $(document).ready(function () {
   /**
    * Refreshes the relation string in the relation editor
    * @returns {void}
+   *
+   * @Author: Mohammed Sayed Mahmod
    */
   function refreshRelationString() {
     relationStringToHtml(appState.relationString);
@@ -399,6 +436,8 @@ $(document).ready(function () {
   /**
    * Regenerates the SPARQL query based on the current state
    * @returns {void}
+   *
+   * @Author: Mohammed Sayed Mahmod
    */
   function regenerateQuery() {
     $.ajax({
@@ -430,6 +469,8 @@ $(document).ready(function () {
    * @param {function} onComplete - A callback function that is executed after the recommendations have been successfully fetched and displayed.
    * @returns {void}
    * @async
+   *
+   * @Author: Mohammed Sayed Mahmod
    */
   function getRecommendations(q = "", target, onComplete = () => {}) {
     const rec = target.parent().children("#rec");
@@ -501,6 +542,8 @@ $(document).ready(function () {
    * @param {string} q The query to fetch superclasses for
    * @returns {Promise} A promise that resolves with the superclasses
    * @async
+   *
+   * @Author: Mohammed Sayed Mahmod
    */
   function getSuperclasses(q = "") {
     return new Promise((resolve, reject) => {
@@ -526,6 +569,8 @@ $(document).ready(function () {
   /**
    * Updates the display of the tag container relative to its input element.
    * @param {jQuery} target - The jQuery object representing the target input element.
+   *
+   * @Author: Danilo Pantic
    */
   function updateTagContainer(target) {
     const tc = target.parent().children(".tagContainer");
@@ -543,6 +588,8 @@ $(document).ready(function () {
    * @param {number} item_id - The ID of the item within its category.
    * @param {string} side - The side (obverse or reverse) of the coin being edited.
    * @param {jQuery} target - The jQuery object representing the target input element.
+   *
+   * @Author: Danilo Pantic
    */
   function addTag(category, item_id, side, target) {
     const tc = target.parent().children(".tagContainer");
@@ -568,6 +615,8 @@ $(document).ready(function () {
    * @param {string} side - The side (obverse or reverse) of the coin being edited.
    * @param {jQuery} target - The jQuery object representing the target input element.
    * @returns {void}
+   *
+   * @Author: Mohammed Sayed Mahmod
    */
   function addTagByItem(category, item, side, target) {
     const tc = target.parent().children(".tagContainer");
@@ -587,6 +636,8 @@ $(document).ready(function () {
   /**
    * Removes a tag from the UI.
    * @param {jQuery} target - The jQuery object representing the target input element.
+   *
+   * @Author: Mohammed Sayed Mahmod
    */
   function removeTag(target) {
     const tc = target.parent().children(".tagContainer");
@@ -603,6 +654,8 @@ $(document).ready(function () {
   /**
    * Clears all recommendations from the display.
    * @param {jQuery} target - The jQuery object representing the target element.
+   *
+   * @Author: Danilo Pantic
    */
   function cleanRecommendations(target) {
     const rec = target.parent().children("#rec");
@@ -612,6 +665,8 @@ $(document).ready(function () {
 
   /**
    * Clears all fields and resets the form to its initial state.
+   *
+   * @Author: Danilo Pantic
    */
   function clearForm() {
     appState.currentCoin = {
@@ -637,6 +692,8 @@ $(document).ready(function () {
 
   /**
    * Renders the coins data into the UI based on the current application state.
+   *
+   * @Author: Mohammed Sayed Mahmod
    */
   function renderCoins() {
     var coinTableBody = $("#coincatalogue .coin-tbody");
@@ -714,6 +771,8 @@ $(document).ready(function () {
   /**
    * Inserts a given HTML node at the end of the relation editor.
    * @param {Node} node - The HTML node to be appended.
+   *
+   * @Author: Danilo Pantic
    */
   function insertAtEnd(node) {
     const relationEditor = $("#relationEditor");
@@ -727,6 +786,8 @@ $(document).ready(function () {
   /**
    * Calculates the width of the arrow in a tooltip based on the number of tooltips present.
    * @returns {number} The calculated width of the arrow.
+   *
+   * @Author: Mohammed Sayed Mahmod
    */
   function calcArrowWidth() {
     const num_tooltips = $(".tooltip-container .tooltip").length;
@@ -746,6 +807,8 @@ $(document).ready(function () {
    * Creates a tooltip on the specified element with the given text.
    * @param {Element} element - The DOM element to which the tooltip will be attached.
    * @param {string} text - The text content of the tooltip.
+   *
+   * @Author: Mohammed Sayed Mahmod
    */
   async function createTooltip(element, text) {
     const $element = $(element);
@@ -783,6 +846,8 @@ $(document).ready(function () {
   /**
    * Performs a search based on the current query in the SPARQL editor.
    * @returns {void}
+   *
+   * @Author: Danilo Pantic
    */
   function performSearch() {
     $("#loadingSymbol").removeClass("hidden");
@@ -816,6 +881,8 @@ $(document).ready(function () {
   /**
    * Adds the currently described coin to the query state.
    * @returns {void}
+   *
+   * @Author: Danilo Pantid
    */
   function addCoinToQuery() {
     let obverseKeywords = $("#front .keywordContainer span.keyword")
@@ -848,6 +915,8 @@ $(document).ready(function () {
    * @param {Array} results - The results to group.
    * @param {string} groupBy - The property to group by.
    * @returns {Object} The grouped results.
+   *
+   * @Author: Mohammed Sayed Mahmod
    */
   function groupResults(results, groupBy) {
     return results.reduce((acc, result) => {
@@ -864,6 +933,8 @@ $(document).ready(function () {
    * Sorts the results based on the current sort settings.
    * @returns {void}
    * @async
+   *
+   * @Author: Mohammed Sayed Mahmod
    */
   function sortResults() {
     const sortBy = $("#sortSelect").val();
@@ -893,6 +964,8 @@ $(document).ready(function () {
    * @param {Object} groupedResults - The grouped results to render.
    * @returns {void}
    * @async
+   *
+   * @Author: Mohammed Sayed Mahmod
    */
   function renderResults(groupedResults) {
     const resultContainer = $("#resultContainer");
@@ -981,6 +1054,8 @@ $(document).ready(function () {
    * Updates the pagination controls based on the current state.
    * @returns {void}
    * @async
+   *
+   * @Author: Danilo Pantic
    */
   function updatePaginationControls() {
     $("#pageInfo").text(
@@ -993,6 +1068,9 @@ $(document).ready(function () {
     );
   }
 
+  //
+  // Everything down below has been done by: Mohammed Sayed Mahmod
+  //
   $("a[href='#tutorial']").click(function (e) {
     e.preventDefault();
     tour.start();
