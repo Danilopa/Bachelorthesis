@@ -63,5 +63,9 @@ Nach dem Start des Servers ist die Anwendung unter `http://127.0.0.1:8000/` in I
 
 ## Entwickler
 
-**Entwickler:** Mohammed Sayed Mahmod, Danilo Pantic <br />
-**Projekt-Link:** [https://github.com/Danilopa/Bachelorthesis.git](https://github.com/Danilopa/Bachelorthesis.git)
+**Entwickler:** Mohammed Sayed Mahmod, Danilo Pantic  
+**Projekt-Link:** [GitHub Repository](https://github.com/Danilopa/Bachelorthesis.git)
+
+## Lizenz
+
+Dieses Projekt ist lizenziert unter der Creative Commons Attribution - NonCommercial - ShareAlike 3.0 Germany License. Um eine Kopie dieser Lizenz zu sehen, besuchen Sie [Creative Commons Lizenz](http://creativecommons.org/licenses/by-nc-sa/3.0/de/).
