@@ -1,0 +1,1277 @@
+$keywordBackground: #FFFFFF
+
+@keyframes rotate
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(360deg)
+
+// Everything down below has been done by Danilo Pantic
+body
+    background: #111111
+
+.tooltip-container
+    position: absolute
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: flex-end
+    z-index: 1000
+
+[data-tooltip]
+    cursor: default
+
+.tooltip-info
+    position: absolute
+    padding: 5px 10px
+    background: white
+    color: black
+    border-radius: 5px
+    font-size: 16px
+    white-space: nowrap
+    border: solid 1px rgba(50, 50, 50, 0.5)
+    box-shadow: 0 0 20px 1px rgba(50, 50, 50, 0.25)
+    max-width: 400px
+    text-wrap: pretty
+    z-index: 1000
+
+    &:after
+        content: ""
+        position: absolute
+        top: -10px
+        left: 50%
+        transform: translateX(-50%) rotate(180deg)
+        border-width: 5px
+        border-style: solid
+        border-color: rgba(50, 50, 50, 0.5) transparent transparent transparent
+
+.tooltip-arrow
+    width: 0
+    height: 0
+    position: absolute
+    bottom: 0
+    left: 50%
+    bottom: -8px
+    margin-left: -5px
+    border-left: 5px solid transparent
+    border-right: 5px solid transparent
+    border-top: 5px solid #494949
+
+    &-border
+        width: 4px
+        height: 4px
+        background: #494949
+        transform: translateX(-50%) translateY(-8px)
+        border-radius: 0 0 5px 5px
+
+*
+    padding: 0
+    margin: 0
+
+    font-family: Open Sans
+
+a
+    text-decoration: none
+
+.hidden
+    display: none
+
+// Everything down below has been done by Mohammed Sayed Mahmod
+
+#coincatalogue
+    display: inline-flex
+    padding: 10px
+    vertical-align: top
+    
+    .coin-table
+        display: flex
+        flex-direction: column
+        width: 100%
+        gap: 10px
+
+        .coin-thead
+            .coin-tr
+                display: flex
+                flex-direction: row
+
+            span
+                flex: 1
+                padding: 10px 0
+                font-weight: bold
+
+                &:first-child
+                    display: none
+
+                &:not(:first-child)
+                    flex: 1
+
+                &:last-child
+                    display: none
+
+        .coin-tbody
+            .coin-tr
+                margin-bottom: 10px
+
+                &-main
+                    display: flex
+                    flex-direction: row
+                    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1)
+                    border: 1px solid #e1e1e1
+                    border-radius: 5px
+                    overflow: hidden
+                    background: rgba(255, 106, 0, 0.35)
+                    cursor: pointer
+
+                    &:hover
+                        background: rgba(255, 106, 0, 0.5)
+
+                    > span
+                        flex: 1
+                        padding: 10px
+                        border-right: 1px solid #e1e1e1
+
+                        &:first-child
+                            display: none
+                            
+
+                        &:not(:first-child)
+                            flex: 1
+
+                        &:last-child
+                            flex: 0 0 10%
+                            border-right: none
+                            display: flex
+                            flex-wrap: wrap
+                            align-content: center
+                            justify-content: center
+                        
+                            .editRow
+                                > span
+                                    background: rgba(255, 255, 255, 0.5)
+                                    border-radius: 50%
+                                    padding: 5px
+                                    cursor: pointer
+
+                                    &:hover
+                                        background: rgba(255, 255, 255, 0.75)
+
+                        .tagContainer
+                            position: relative
+                            left: 0
+                            height: auto
+                
+                        .keywords
+                            margin-top: 10px
+
+                            .title, .keywordlist
+                                display: flex
+                                flex-wrap: wrap
+                            
+                            .keywordlist
+                                span
+                                    position: relative
+                                    padding: 0 5px
+                                    border-radius: 5px
+                                    background: $keywordBackground
+                                    color: #000000
+                                    border: solid 1px rgba(0, 0, 0, 0.15)
+                                    margin-right: 10px
+                                    margin-bottom: 10px
+                                    display: inline-block
+
+                                    &[data-negated=true]
+                                        padding: 0 5px 0 0
+
+                                        &::before
+                                            content: "NOT "
+                                            background: rgba(255, 80, 80, 1)
+                                            color: white
+                                            margin-right: 5px
+                                            padding: 0 0 0 5px
+                
+                &:nth-child(even)
+                    .coin-tr-main
+                        background: rgba(255, 106, 0, 0.2)
+
+                        &:hover
+                            background: rgba(255, 106, 0, 0.5)
+
+.material-symbols-outlined
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
+
+.tagContainer
+    position: absolute
+    top: 0
+    left: 40px
+    z-index: 2
+    display: flex
+    height: 100%
+    align-items: center
+    .tag
+        display: inline-flex
+        padding: 5px 7.5px
+        border-radius: 5px
+        color: rgba(255, 255, 255, 1)
+        margin-left: 2px
+        &.subject
+            background: rgba(51, 113, 151, 1)
+        &.relation
+            background: rgba(254, 127, 45, 1)
+        &.object
+            background: rgba(144, 170, 134, 1)
+
+#relationMenu
+    position: fixed
+    left: 50vw
+    top: 20px
+    width: 75vw
+    height: calc(100vh - 40px)
+    max-height: 1040px
+    min-width: 1024px
+    max-width: 1440px
+    transform: translateX(-50%)
+    background: white
+    border-radius: 10px
+    z-index: 3
+    box-shadow: 0 0 50px 1px rgba(0, 0, 0, 0.25)
+
+    .topbar
+        padding: 40px
+
+        #relationEditorWrapper
+            display: block
+            margin-top: 20px
+            border: solid 1px rgba(0, 0, 0, 0.25)
+            border-radius: 20px
+
+            #relationEditor
+                flex: 1
+                margin: 10px
+                font-size: 22px
+                overflow: hidden
+                border-style: none
+                resize: none
+                padding: 10px
+                align-self: center
+
+                .id
+                    padding: 2px 9px
+                    background: rgba(252, 107, 0, 0.25)
+                    border-radius: 10px
+                    text-transform: uppercase
+
+                .op
+                    margin: 5px
+                    &.p_open::before
+                        content: "("
+                        font-size: 1.25em
+
+                    &.p_close::before
+                        content: ")"
+                        font-size: 1.25em
+
+                    &.and::before
+                        content: "AND"
+                        font-size: 1em
+
+                    &.or::before
+                        content: "OR"
+                        font-size: 1em
+                    
+                    &.not::before
+                        content: "NOT"
+                        font-size: 1em
+
+            #catalogueWrapper
+                display: flex
+                width: 100%
+                border-top: solid 1px rgba(0, 0, 0, 0.25)
+
+                #coincatalogue
+                    flex: 5
+                    padding: 10px
+                    overflow-y: auto
+                    border-right: solid 1px rgba(0, 0, 0, 0.25)
+
+                    .coin-table
+                        width: 100%
+
+                        .coin-thead
+                            .coin-tr
+                                display: flex
+                                flex-direction: row
+                                border-right: none
+                                display: flex
+                                flex-wrap: wrap
+                                align-content: center
+                                justify-content: center
+
+                            span
+                                &:first-child
+                                    display: flex
+                                    flex: 0 0 5%
+                                    padding: 10px
+                                    
+
+                                &:last-child
+                                    display: flex
+
+                        .coin-tbody
+                            .coin-tr
+                                margin-bottom: 10px
+
+                                &-main
+                                    &:hover
+                                        background: rgba(255, 106, 0, 0.5)
+
+                                    > span
+                                        &:first-child
+                                            display: flex
+                                            flex-direction: row
+                                            border-right: none
+                                            display: flex
+                                            flex-wrap: wrap
+                                            align-content: center
+                                            justify-content: center
+                                            flex: 0 0 5%
+                                            
+                                        &:not(:first-child)
+                                            flex: 1
+
+                                        &:last-child
+                                            display: none
+
+                #operatorcatalogue
+                    flex: 1
+                    padding: 10px
+                    display: flex
+                    flex-direction: column
+
+                    .calculator-grid
+                        display: flex
+                        flex-wrap: wrap
+                        width: 100%
+                        gap: 10px
+                        
+                        button
+                            flex: 1 1 calc(50% - 10px)
+                            padding: 20px
+                            font-size: 16px
+                            border: 1px solid #e1e1e1
+                            border-radius: 5px
+                            cursor: pointer
+                            background: #9bddea
+
+                            &:hover
+                                background-color: #5ed3ea
+                        
+                        .clear
+                            flex-basis: 100%
+
+                #coincatalogue, #operatorcatalogue
+                    display: inline-flex
+                    padding: 10px
+                    vertical-align: top
+                    max-height: 280px
+
+
+    .bottombar
+        padding: 0 40px
+
+        #sparqleditor
+            padding: 10px
+            border-radius: 20px
+
+            h2
+                padding: 10px 0
+
+            .editortabs
+                display: flex
+                flex-wrap: wrap
+                gap: 10px
+                padding: 10px 0
+
+                button
+                    padding: 5px 20px
+                    border-radius: 7px
+                    font-weight: 400
+                    font-size: 16px
+                    border: none
+                    cursor: pointer
+                    background: #ffffff
+                    border: solid 1px #999999
+
+                    &:hover
+                        background-color: #EEEEEE
+
+            .cm-s-default
+                background: #EEEEEE
+                width: 100%
+
+        .button-group
+            display: flex
+            justify-content: space-between
+            margin: 15px 0
+
+            button
+                padding: 10px 20px
+                border-radius: 7px
+                font-weight: 400
+                font-size: 16px
+                border: none
+                cursor: pointer
+
+                &.save
+                    background-color: #00913b
+                    color: white
+
+                    &:hover
+                        background-color: #006328
+                
+                &.close
+                    background-color: white
+                    color: #333333
+                    border: solid 1px #555555
+
+                    &:hover
+                        background-color: #E9E9E9
+
+#coinEditorMenu
+    position: fixed
+    left: 50vw
+    top: 15vh
+    width: 50vw
+    min-width: 1024px
+    transform: translateX(-50%)
+    background: white
+    border-radius: 10px
+    z-index: 3
+    box-shadow: 0 0 50px 1px rgba(0, 0, 0, 0.25)
+
+    .topbar
+        padding: 40px
+
+        #relationEditor
+            width: calc(100% - 20px - 4px)
+            font-size: 2em
+            height: calc(4em + 20px)
+            overflow: hidden
+            border-style: none
+            resize: none
+            border: solid 1px rgba(0, 0, 0, 0.25)
+            border-radius: 20px
+            padding: 10px
+
+            .id
+                padding: 2px 9px
+                margin: 5px
+                background: rgba(252, 107, 0, 0.25)
+                border-radius: 10px
+                text-transform: uppercase
+
+            .op
+                margin: 5px
+                &.p_open::before
+                    content: "("
+                    font-size: 1.25em
+
+                &.p_close::before
+                    content: ")"
+                    font-size: 1.25em
+
+                &.and::before
+                    content: "AND"
+                    font-size: 1em
+
+                &.or::before
+                    content: "OR"
+                    font-size: 1em
+
+
+    .bottombar
+        padding: 40px
+
+        #coincatalogue, #operatorcatalogue
+            display: inline-flex
+            padding: 10px
+            border-radius: 20px
+            border: solid 1px rgba(0, 0, 0, 0.25)
+            vertical-align: top
+
+        #coincatalogue
+            width: calc(75% - 20px - 4px)
+
+            .coin-table
+                .coin-thead
+                    .coin-tr
+                        display: flex
+                        flex-direction: row
+
+                    span
+                        &:first-child
+                            display: flex
+
+                        &:last-child
+                            display: block
+                            flex: 0 0 10%
+        
+        #operatorcatalogue
+            width: calc(25% - 20px - 4px)
+
+            .calculator-grid
+                display: flex
+                flex-wrap: wrap
+                width: 100%
+                gap: 10px
+                
+                button
+                    flex: 1 1 calc(50% - 10px)
+                    padding: 20px
+                    font-size: 18px
+                    border: 1px solid #e1e1e1
+                    border-radius: 5px
+                    cursor: pointer
+                    background: #9bddea
+
+                    &:hover
+                        background-color: #5ed3ea
+                
+                .clear
+                    flex-basis: 100%
+
+        .button-group
+            display: flex
+            justify-content: space-between
+            margin-top: 50px
+
+            button
+                padding: 10px 20px
+                border-radius: 7px
+                font-weight: 400
+                font-size: 20px
+                border: none
+                cursor: pointer
+
+                &.save
+                    background-color: #00913b
+                    color: white
+
+                    &:hover
+                        background-color: #006328
+                
+                &.close
+                    background-color: white
+                    color: #333333
+                    border: solid 1px #555555
+
+                    &:hover
+                        background-color: #E9E9E9
+
+#main
+    display: flex
+    width: 100vw
+    max-width: 1920px
+    max-height: 1080px
+    overflow: hidden
+    margin: 0 auto
+    background: #ff9700
+
+    #menu
+        flex-grow: 1
+        margin-top: 50px
+        width: 24vw
+        max-width: 426px
+
+        #logo
+            display: block
+            margin-left: 38px
+
+            .logo-image
+                display: inline-flex
+                vertical-align: middle
+                background: url('../../logo.png') center center / 100% no-repeat
+                width: 80px
+                height: 80px
+
+            .logo-label
+                display: inline-flex
+                vertical-align: middle
+                font-family: 'Verdana'
+                font-style: normal
+                font-size: 22px
+                line-height: 80px
+                align-items: center
+                text-align: center
+                color: #FFFFFF
+
+        #nav
+            margin-top: 60px
+
+            .nav-item
+                position: relative
+                color: white
+                height: 70px
+                margin-bottom: 20px
+                border-radius: 0 100px 100px 0
+                max-width: 300px
+                overflow: hidden
+
+                .nav-item-inner
+                    position: relative
+                    z-index: 2
+                    margin-left: 38px
+
+                    .icon-outer, .nav-text
+                        display: inline-flex
+                        transition: all 0.2s linear
+
+                    .icon-outer
+                        width: 40px
+                        align-content: center
+                        vertical-align: middle
+                        color: #BF8F49
+
+                        span
+                            font-size: 26px
+                            padding: 7px
+                            background: #856D4A
+                            border-radius: 7px
+
+                    .nav-text
+                        font-size: 18px
+                        line-height: 20px
+                        padding: 25px 0 25px 20px
+                        align-content: center
+                        vertical-align: middle
+                        color: #9C753C
+                
+                &.disabled
+                    opacity: 0.5
+                    pointer-events: none
+                    cursor: not-allowed
+
+                &::before
+                    position: absolute
+                    z-index: 1
+                    content: ""
+                    background: #6C4662
+                    display: block
+                    left: 0
+                    top: 0
+                    height: 100%
+                    width: 5px
+                    opacity: 0
+                    transition: all 0.2s linear
+
+                &:not(.active):hover
+                    .icon-outer, .nav-text
+                        color: #FFC065
+
+                    &::before
+                        opacity: 1
+                        transform: scaleX(150)
+
+                &.active
+                    .icon-outer, .nav-text
+                        color: white
+
+                    &::before
+                        opacity: 1
+
+    #stage
+        flex-grow: 3.42
+        display: flex
+        height: 100vh
+        width: 76vw
+
+        #stageArea
+            border-radius: 60px
+            background: #FFE6CF
+            margin: 20px 30px
+            height: 100%
+            max-height: 1040px
+            overflow: hidden
+            width: 100%
+
+            #moveableStage
+                display: flex
+                flex-wrap: wrap
+                flex-grow: 1
+                height: 100%
+                transition: transform 1s ease-in-out 0.2s
+
+                &[data-state="results"]
+                    transform: translateY(calc(-100% + 25px))
+                    
+                    #resultBox
+                        #returnToQuery
+                            pointer-events: all
+                            opacity: 1
+
+                    #searchBox, #queryBox
+                        transform: translateY(-50%)
+
+                #searchBox
+                    background: #FFF5EB
+                    border-radius: 34px
+                    margin: 25px
+                    max-width: 378px
+                    height: calc(100vh - 90px - 60px)
+                    max-height: 930px
+                    flex: 1 1 auto
+                    padding: 30px
+                    position: relative
+                    transition: transform 1s ease-in-out
+
+                    #searchType
+                        #search
+                            display: flex
+                            align-items: center
+                            width: 100%
+                            margin-bottom: 30px
+
+                            input[type="radio"]
+                                display: none
+
+                                &:checked + label
+                                    font-weight: 600
+                                    background: none
+                            
+                            label
+                                text-align: center
+                                cursor: pointer
+                                width: 100%
+                                padding: 10px
+                                border: solid 1px rgba(0, 0, 0, 0.25)
+                                background: rgba(0, 0, 0, 0.2)
+
+                                &:first-of-type
+                                    border-radius: 7px 0 0 7px
+                                    border-right: none
+
+                                &:last-of-type
+                                    border-radius: 0 7px 7px 0
+
+                    .coin-side
+                        h2
+                            font-size: 20px
+                            font-weight: 500
+                            margin-bottom: 10px
+
+                        &#back
+                            margin-top: 40px
+
+                    #headline
+                        display: block
+                        margin-bottom: 40px
+                        font-size: 26px
+                        color: #402B0B
+                        font-weight: 600
+
+                    .textbox
+                        background: transparent
+                        font-size: 16px
+                        line-height: 16px
+                        border-style: none
+                        border: 1px solid rgba(0, 0, 0, 1)
+                        height: 52px
+                        border-radius: 7px
+                        color: #787878
+                        padding: 15px 0px 15px 40px
+                        box-sizing: border-box
+                        &:focus
+                            outline: none
+
+                    .totext
+                        position: absolute
+                        z-index: 2
+                        left: 0
+                        width: 40px
+                        padding: 14px 0
+                        top: 0
+                        color: rgba(0, 0, 0, 0.5)
+                        text-align: center
+
+                    #search
+                        position: relative
+                        input
+                            position: relative
+                            width: fill-available
+                            z-index: 1
+                        #rec
+                            position: absolute
+                            background: white
+                            border-radius: 0 0 5px 5px
+                            z-index: 3
+                            left: 40px
+                            transform: translateX(-10px)
+                            ul
+                                list-style-type: none
+                                display: none
+                                max-height: 500px
+                                overflow-y: auto
+                                border: solid 1px rgb(0 167 255)
+                                border-radius: 0 0 10px 10px
+                                li
+                                    display: flex
+                                    padding: 15px 10px
+                                    min-width: 220px
+                                    border-bottom: solid 1px rgb(0 167 255)
+                                    .name
+                                        flex: 2
+                                    .type
+                                        display: flex
+                                        text-transform: uppercase
+                                        font-style: italic
+                                        color: rgb(87, 176, 226)
+                                        padding-left: 15px
+                                        align-items: center
+                                        flex: 1
+                                    &:hover
+                                        background: rgba(87, 176, 226, 0.25)
+                                        cursor: pointer
+                                    
+                                    &:last-child
+                                        border-bottom: none
+
+                    #keywords
+                        position: relative
+                        margin-top: 20px
+                        input
+                            position: relative
+                            width: 50%
+                            z-index: 1
+                        button
+                            height: 52px
+                            width: 52px
+                            border-style: none
+                            border-radius: 5px
+                            background-color: #3498DB
+                            color: white
+                            cursor: pointer
+                            transition: transform 0.035s ease-in-out
+                            vertical-align: top
+                            &:hover
+                                background-color: #2980B9
+                            &:active
+                                transform: scale(0.95)
+
+                        .keywordContainer
+                            position: relative
+                            margin-top: 15px
+                            span.keyword
+                                position: relative
+                                border-radius: 5px
+                                background: $keywordBackground
+                                color: #000000
+                                border: solid 1px rgba(0, 0, 0, 0.15)
+                                margin-right: 10px
+                                cursor: pointer
+                                transition: all 0.1s ease-in-out
+                                display: inline-block
+                                margin-bottom: 10px
+                                
+                                > span.label
+                                    padding: 5px
+
+                                &[data-negated=true]
+                                    > span.label
+                                        padding: 0 5px 0 0
+
+                                    > span.label::before
+                                        content: "NOT "
+                                        background: rgba(255, 80, 80, 1)
+                                        color: white
+                                        margin-right: 5px
+                                        padding: 0 0 0 5px
+                                
+                                &:hover
+                                    z-index: 20
+
+
+                                .keyword-menu
+                                    position: absolute
+                                    width: 100%
+                                    min-width: 100px
+                                    background: white
+
+                                    div
+                                        display: flex
+                                        align-items: center
+                                        padding: 5px
+                                        border: solid 1px rgba(0, 0, 0, 0.15)
+
+                                        &:hover
+                                            background: rgba(0, 0, 0, 0.05)
+                                        
+                                        > span
+                                            font-size: 20px
+
+                                        &.delete
+                                            background: rgba(255, 0, 0, 0.75)
+                                            color: white
+                                            &:hover
+                                                background: rgba(255, 0, 0, 1)
+
+
+                    #searchActions
+                        width: fill-available
+                        position: absolute
+                        bottom: 0
+                        left: 0
+                        padding: 30px
+
+                        button
+                            display: block
+                            width: 100%
+                            border-radius: 7px
+                            padding: 15px
+                            font-weight: 400
+                            font-size: 16px
+                            margin-top: 10px
+                            border: none
+                            background: none
+                            cursor: pointer
+                            opacity: 0.8
+
+                            &.addcoin
+                                background: #ACACAC
+                            
+                            &.clearcoin
+                                border: solid 1px #ACACAC
+                                &:hover
+                                    background: #E9E9E9
+
+                            &:hover
+                                opacity: 1
+
+                #queryBox
+                    border-radius: 34px
+                    margin: 25px
+                    flex: 1 1 auto
+                    position: relative
+                    margin: 25px 25px 25px 0
+                    height: calc(100vh - 90px - 60px)
+                    max-height: 930px
+                    padding: 30px
+                    background: #FFF5EB
+                    transition: transform 1s ease-in-out 0.15s
+
+                    #headline
+                        display: block
+                        margin-bottom: 40px
+                        font-size: 26px
+                        color: #402B0B
+                        font-weight: 600
+
+                    #coincatalogue
+                        width: 100%
+                        padding: 0
+                        border: 0
+                        height: 80%
+                    
+                        .coin-table
+                            .coin-thead
+                                .coin-tr
+                                    display: flex
+                                    flex-direction: row
+
+                                span
+                                    &:last-child
+                                        display: block
+                                        flex: 0 0 10%
+                            
+                            .coin-tbody
+                                overflow-y: scroll
+                                .coin-tr-main
+                                    cursor: default
+
+                    #searchActions
+                        display: flex
+                        flex-wrap: wrap
+                        justify-content: space-between
+                        align-items: center
+                        width: fill-available
+                        position: absolute
+                        bottom: 0
+                        left: 0
+                        padding: 30px
+
+                        button
+                            display: inline-block
+                            width: 100%
+                            border-radius: 7px
+                            padding: 15px
+                            font-weight: 400
+                            font-size: 16px
+                            margin-top: 10px
+                            border: none
+                            background: none
+                            cursor: pointer
+                            opacity: 0.8
+
+                            &.clearcoins
+                                flex-basis: 18%
+                                border: solid 2px #FFA800
+
+                            &.advancededit
+                                flex-basis: 30%
+                                background: #343434
+                                color: white
+
+                            &.searchcoin
+                                flex-basis: 50%
+                                background: #FF7009
+
+                            &:hover
+                                opacity: 1
+                            
+                            &[disabled]
+                                opacity: 1
+                                cursor: not-allowed
+
+                #resultBox
+                    background: #FFF5EB
+                    border-radius: 34px
+                    margin: 0 25px 25px 25px
+                    flex: 1 1 auto
+                    padding: 30px
+                    position: relative
+                    width: 100%
+                    height: calc(100vh - 90px - 60px)
+                    max-height: 930px
+                    overflow-y: scroll
+
+                    #returnToQuery
+                        position: fixed
+                        left: 50%
+                        transform: translateX(-50%)
+                        z-index: 30
+                        pointer-events: none
+                        opacity: 0
+                        transition: all 0.5s ease-in-out
+
+                        &:hover
+                            transform: translateX(-50%) translateY(-10px)
+
+                        > span
+                            background: #FFFFFF
+                            padding: 10px 25px
+                            border: solid 2px rgba(0, 0, 0, 0.15)
+                            border-radius: 15px
+                            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25)
+                            cursor: pointer
+
+                    #headline
+                        position: relative
+                        font-size: 26px
+                        color: white
+                        font-weight: 600
+                        justify-content: space-between
+                        align-items: center
+                        padding: 10px 20px
+                        background: #ff9700
+                        border-radius: 5px
+
+                        > span
+                            display: block
+
+                        #resultActions
+                            display: flex
+                            align-items: center
+                            justify-content: center
+                            gap: 10%
+                            margin-top: 10px
+                            width: 100%
+                            border-radius: 5px
+                            background: rgba(255, 255, 255, 0.15)
+
+                            button
+                                display: flex
+                                align-items: center
+                                padding: 10px
+                                border-radius: 5px
+                                background: white
+                                cursor: pointer
+                                border: solid 1px rgba(0, 0, 0, 0.5)
+                        
+
+                            label
+                                margin-right: 10px
+                                font-size: 14px
+                                font-weight: normal
+                                color: #FFFFFF
+
+                            .sort-dropdown, .group-dropdown
+                                appearance: none
+                                background-color: white
+                                border: solid 1px rgba(0, 0, 0, 0.3)
+                                border-radius: 5px
+                                padding: 10px
+                                cursor: pointer
+                                &:after
+                                    content: ""
+                                    position: absolute
+                                    right: 10px
+                                    top: 50%
+                                    transform: translateY(-50%)
+                                    width: 0
+                                    height: 0
+                                    border: 5px solid transparent
+                                    border-color: #333 transparent transparent transparent
+
+                            select
+                                -webkit-appearance: none
+                                -moz-appearance: none
+                                appearance: none
+                                background: transparent
+                                border: none
+                                padding: 5px 30px 5px 10px
+                                margin: 0
+                                font-size: 14px
+                                cursor: pointer
+                                border-radius: 5px
+
+                                &:focus
+                                    outline: none
+
+                            select::-ms-expand
+                                display: none
+
+                    #resultContainer
+                        #loadingSymbol
+                            display: flex
+                            justify-content: center
+                            align-items: center
+                            height: 50%
+                            width: 100%
+                            color: #FFA800
+
+                            > span
+                                font-size: 5em
+                                animation: rotate 2s linear infinite
+
+                        .category
+                            font-size: 20px
+                            width: 100%
+                            display: block
+                            margin: 30px 0 10px
+                            border: solid 2px rgba(0, 0, 0, 0.4)
+                            border-radius: 12px
+
+                            > span
+                                display: block
+                                padding: 10px 25px
+                                background: rgba(0, 0, 0, 0.4)
+                                color: white
+                                border-radius: 10px 10px 0 0
+                        
+                        .category-container
+                            display: grid
+                            grid-template-columns: repeat(3, 1fr)
+                            gap: 30px
+                            justify-content: center
+                            padding: 25px
+
+                            .result-item
+                                display: flex
+                                position: relative
+                                border-radius: 20px
+                                overflow: hidden
+                                border: solid 1px rgba(0, 0, 0, 0.2)
+                                flex-direction: column
+                                cursor: pointer
+                                background: #ffc531
+
+                                &-top
+                                    position: relative
+                                    background: white
+                                    height: 130px
+                                    display: flex
+                                    justify-content: center
+                                    align-items: center
+                                    gap: 15px
+
+                                    img
+                                        max-width: 100%
+                                        max-height: 100%
+                                        object-fit: contain
+
+                                    &-id
+                                        position: absolute
+                                        top: 0
+                                        right: 0
+                                        padding-right: 10px
+                                        background: white
+                                        font-size: 20px
+                                
+                                &-bottom
+                                    position: relative
+                                    display: flex
+                                    flex-direction: column
+
+                                    &-location
+                                        font-size: 20px
+                                        padding: 10px 20px
+                                        background: rgba(255, 255, 255, 0.5)
+
+                                        .location
+                                            font-weight: 600
+
+                                        .region
+                                            font-size: 18px
+                                            padding-left: 10px
+                                    
+                                    &-extra
+                                        font-size: 16px
+                                        padding: 5px 20px
+                                        background: rgba(255, 255, 255, 0.5)
+                                    
+                                    &-description
+                                        padding: 10px 20px
+                                        border-top: solid 2px rgba(0, 0, 0, 0.25)
+                                        font-size: 16px
+
+                                        p:first-of-type
+                                            margin-bottom: 10px
+
+                                        p
+                                            span
+                                                font-weight: 700
+
+                                &.TypeSeriesItem
+                                    background: #74ceff
+
+                                    .result-item
+
+                                        &-top
+                                            &-id
+                                                display: none
+                    
+                    #paginationControls
+                        display: flex
+                        justify-content: center
+                        align-items: center
+                        margin-top: 20px
+                        font-size: 16px
+
+                        button
+                            padding: 5px 10px
+                            margin: 0 10px
+                            background-color: #ff9700
+                            border: none
+                            border-radius: 5px
+                            color: white
+                            cursor: pointer
+                            transition: background 0.3s
+                            font-size: 16px
+
+                            &:hover
+                                background-color: #d07d00
+
+                            &:disabled
+                                opacity: 0.5
+                                cursor: default
+
+                        #pageInfo
+                            margin: 0 15px

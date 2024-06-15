@@ -6,45 +6,33 @@
     <meta name="viewport" content="width=device-width" />
     <title>ICONOGRAPHIC SEARCH</title>
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    />
-    <link rel="stylesheet" href="https://unpkg.com/intro.js/introjs.css" />
 
-    <script src="http://localhost:8000/static/thesis-wrapper.js"></script>
-
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"
-      integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
-      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+    <link rel="stylesheet" href="{% static 'styles/fonts/OpenSans.css' %}" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css"
+      href="{% static 'styles/fonts/MaterialSymbolsOutlined.css' %}"
     />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/sparql/sparql.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/sparqling/sparql-formatter@v0.7.6/dist/main.js"></script>
-    <script src="https://unpkg.com/intro.js/intro.js"></script>
+
+    <link rel="stylesheet" href="{% static 'styles/introjs/introjs.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'styles/codeMirror/codemirror.min.css' %}"
+    />
+
+    <script src="{% static 'js/fontAwesome/all.min.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'js/codeMirror/codemirror.min.js' %}"></script>
+    <script src="{% static 'js/codeMirror/sparql.min.js' %}"></script>
+    <script src="{% static 'js/sparqlFormatter/main.js' %}"></script>
+    <script src="{% static 'js/introjs/intro.js' %}"></script>
 
     {% block mainjs %}
-    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <script
+      type="text/javascript"
+      src="{% static 'js/main/main.js' %}"
+    ></script>
     {% endblock %} {% block maincss %}
-    <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/main/style.css' %}" />
     {% endblock %}
   </head>
 
