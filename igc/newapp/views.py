@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from services.CoinSearchHandler import CoinSearchHandler
 from services.CustomDataFrame import Dataframes
+from services.Helper import Helper
 
 import json
 import csv
@@ -13,10 +14,13 @@ import pandas as pd
 
 database = Dataframes()
 coinSearchHandler = CoinSearchHandler()
-mintMap_df = pd.read_csv("newapp/ressources/mintMap.csv")
+helper = Helper("newapp/ressources/mintMap.csv")
 
-mintMap_df = mintMap_df.set_index('mint')
-mintMap = mintMap_df['mintLabel'].to_dict()
+#mintMap_df = pd.read_csv("newapp/ressources/mintMap.csv")
+#mintMap_df = mintMap_df.set_index('mint')
+#mintMap = mintMap_df['mintLabel'].to_dict()
+
+mintMap = helper.get_mint_map()
 
 
 def index(request):
